@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>    
+    <meta charset="utf-8">
+Tutaj jest Tabela    
+    <title>ZADANIE FORMULARZ</title>
+    <script>
+        function pokazHaslo() {
+            document.getElementById("haslo").type = "text";
+        }
+        function ukryjHaslo() {
+            document.getElementById("haslo").type = "password";
+        }
+
+        function toggleDropdown() {
+            var content = document.getElementById("dropdownContent");
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        }
+
+        function updateSelectedLanguages() {
+            var checkboxes = document.querySelectorAll('input[name="jezyk"]:checked');
+            var selectedText = "-- Wybierz języki --";
+            
+            if (checkboxes.length > 0) {
+                var values = [];
+                checkboxes.forEach(function(checkbox) {
+                    values.push(checkbox.value);
+                });
+                selectedText = values.join(", ");
+            }
+            
+            document.getElementById("dropdownButtonText").innerText = selectedText;
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn') && !event.target.closest('#dropdownContent')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === "block") {
+                        openDropdown.style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: left;
+        }
+        .dropbtn {
+            background-color: white;
+            color: black;
+            padding: 5px 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            width: 250px;
+            text-align: left;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 250px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .dropdown-content label {
+            display: block;
+            padding: 3px 0;
+            cursor: pointer;
+        }
+        .box-section {
+            border: 1px solid black;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body bgcolor="009999">
+
+<form>
+<h1 align="center" style="margin-top: 5px; margin-bottom: 10px;">Formularz</h1>
+
+<table width="100%" border="0">    
+    <tr>        
+        <td align="center">            
+            <h3>Imię:</h3><input type="text" id="imie" name="imie">        
+        </td>        
+        <td align="center">            
+            <h3>Nazwisko:</h3><input type="text" id="nazwisko" name="nazwisko">        
+        </td>        
+        <td align="center">            
+            <h3>Wiek:</h3><input type="text" id="wiek" name="wiek">        
+        </td>    
+    </tr>
+</table>
+
+<br>
+
+<table width="100%" border="0">    
+    <tr>        
+        <td align="left" width="45%" style="vertical-align: top;">            
+            <h2>Do jakiej szkoły chodzisz?</h2>            
+            <select name="szkola" style="font-size: 16px; padding: 5px; width: 250px;">
+                <option value="" disabled selected>-- Wybierz szkołę --</option>
+                <option value="technikum">Technikum</option>
+                <option value="liceum">Liceum</option>
+                <option value="zawodowka">Zawodówka</option>
+            </select>
+        </td>        
+        <td width="10%">&#160;</td>        
+        <td align="right" width="45%" style="vertical-align: top;">            
+            <h2>Jaki masz język obcy?</h2>            
+            <div class="custom-dropdown">
+                <button type="button" class="dropbtn" onclick="toggleDropdown()">
+                    <span id="dropdownButtonText">-- Wybierz języki --</span> ▼
+                </button>
+                <div id="dropdownContent" class="dropdown-content">
+                    <label><input type="checkbox" name="jezyk" value="Angielski" onchange="updateSelectedLanguages()"> Angielski</label>
+                    <label><input type="checkbox" name="jezyk" value="Niemiecki" onchange="updateSelectedLanguages()"> Niemiecki</label>
+                    <label><input type="checkbox" name="jezyk" value="Rosyjski" onchange="updateSelectedLanguages()"> Rosyjski</label>
+                    <label><input type="checkbox" name="jezyk" value="Hiszpański" onchange="updateSelectedLanguages()"> Hiszpański</label>
+                    <label><input type="checkbox" name="jezyk" value="Inne" onchange="updateSelectedLanguages()"> Inne</label>
+                </div>
+            </div>
+        </td>    
+    </tr>
+</table>
+
+<br>
+
+<table width="100%" border="0" style="vertical-align: top;">    
+    <tr>        
+
+        <td align="left" width="38%" style="vertical-align: top;">            
+            <h2>Jakie masz zainteresowania?</h2>
+            <div class="box-section">
+                <table width="100%" border="0" cellpadding="3">
+                    <tr>
+                        <td width="33%"><input type="checkbox" name="zainteresowania" value="sport"> Sport</td>
+                        <td width="33%"><input type="checkbox" name="zainteresowania" value="muzyka"> Muzyka</td>
+                        <td width="34%"><input type="checkbox" name="zainteresowania" value="gry"> Gry</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="zainteresowania" value="ksiazki"> Książki</td>
+                        <td><input type="checkbox" name="zainteresowania" value="film"> Film</td>
+                        <td><input type="checkbox" name="zainteresowania" value="programowanie"> Programowanie</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="zainteresowania" value="motoryzacja"> Motoryzacja</td>
+                        <td><input type="checkbox" name="zainteresowania" value="podroze"> Podróże</td>
+                        <td><input type="checkbox" name="zainteresowania" value="fotografia"> Fotografia</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="zainteresowania" value="sztuka"> Sztuka</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </td>        
+
+        <td align="center" width="29%" style="vertical-align: top;">            
+            <h2>Pochodzenie</h2>            
+            <div class="box-section" style="text-align: left; display: inline-block; width: 85%;">
+                <input type="radio" name="pochodzenie" value="polska"> Polska<br>
+                <input type="radio" name="pochodzenie" value="ukraina"> Ukraina<br>
+                <input type="radio" name="pochodzenie" value="niemcy"> Niemcy<br>
+                <input type="radio" name="pochodzenie" value="inne"> Inne: <input type="text" name="pochodzenie_inne" style="width: 80px;">
+            </div>
+        </td>        
+
+        <td align="right" width="33%" style="vertical-align: top;">            
+            <h2>Jaka miałaś/miałeś średnią w szkole podstawowej?</h2>            
+            <select name="srednia" style="font-size: 16px; padding: 5px; width: 250px;">
+                <option value="" disabled selected>-- Wybierz średnią --</option>
+                <option value="1.0-2.0">1.0–2.0</option>
+                <option value="3.0+">3.0+</option>
+                <option value="4.0+">4.0+</option>
+                <option value="5.0+">5.0+</option>
+                <option value="6.0">6.0</option>
+            </select>
+        </td>    
+    </tr>
+</table>
+
+<br>
+
+<table width="100%" border="0" style="vertical-align: top;">
+    <tr>
+
+        <td align="left" width="33%" style="vertical-align: top;">
+            <h2>Hasło do formularza</h2>
+            <table border="1" cellpadding="8" bgcolor="#008080" style="border-color: black;">
+                <tr>
+                    <td>
+                        <label for="haslo">Podaj hasło:</label><br><br>
+                        <input type="password" id="haslo" name="haslo">&#160;
+                        <button type="button" 
+                                onmousedown="pokazHaslo()" 
+                                onmouseup="ukryjHaslo()" 
+                                onmouseleave="ukryjHaslo()">
+                            👁️ Pokaż
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </td>
+
+        <td align="center" width="33%" style="vertical-align: top;">
+            <h2>Często uprawiasz sport?</h2>
+            <div style="text-align: left; display: inline-block;">
+                <input type="radio" name="sport_czestosc" value="tak"> Tak<br>
+                <input type="radio" name="sport_czestosc" value="nie"> Nie<br>
+                <input type="radio" name="sport_czestosc" value="rzadko"> Rzadko<br>
+            </div>
+
+            <h2 style="margin-top: 10px;">Masz jakieś zwierzę domowe?</h2>
+            <div style="text-align: left; display: inline-block;">
+                <input type="radio" name="zwierze" value="tak"> Tak<br>
+                <input type="radio" name="zwierze" value="nie"> Nie<br>
+                <input type="radio" name="zwierze" value="mialem_bede"> Miałem / będę miał<br>
+            </div>
+        </td>
+
+        <td align="right" width="33%" style="vertical-align: top;">
+            <h2>Miałeś/masz jakieś uwagi?<br>Jeżeli tak, to jakie?</h2>
+            <textarea name="uwagi" rows="5" cols="32" placeholder="Wpisz swoje uwagi tutaj..."></textarea>
+        </td>
+    </tr>
+</table>
+<div align="center" style="margin-top: 10px; margin-bottom: 15px;">
+    <table border="1" cellpadding="8" bgcolor="#008080" style="border-color: black;">
+        <tr>
+            <td align="center">
+                <input type="submit" value="Wyślij" style="font-size: 16px; padding: 4px 15px;"><br><br>
+                <input type="reset" value="wyczysc formularz" onclick="document.getElementById('dropdownButtonText').innerText = '-- Wybierz języki --';" style="font-size: 14px; padding: 2px 8px;">
+            </td>
+        </tr>
+    </table>
+</div>
+<br>
+<A HREF="index.html"> WRÓĆ </A> 
+
+</form>
+</body>
+</html>
